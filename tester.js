@@ -31,5 +31,6 @@ var objects = [
 	
 $( document ).ready(function() {
 	console.log("Ready");
-	console.log(generateAccordion(objects));
+	console.log(generateAccordion(objects, "accordion"));
+	$("#content").append(generateAccordion(objects, "accordion"));
 });
