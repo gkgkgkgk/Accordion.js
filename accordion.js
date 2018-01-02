@@ -1,4 +1,4 @@
-function generateAccordion(){
+function generateAccordion(list){
 	
 	return "";
 }
