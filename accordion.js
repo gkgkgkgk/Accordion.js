@@ -37,44 +37,7 @@ function generateAccordion(listP, type){
         $("<a>").attr("href", this.path).text(this.name).appendTo(item);
         elements[this.path] = item;
     });
-		/*
-		console.log("Starting Accordion");
-		for(let i = 0; i < maximumDepth; i++){
-			//console.log("Depth: " + i);
-			for(let x = 0; x < listOfStrings.length; x++){
-				var counter = -1;
-				for(let y = 0; y < listOfStrings[x].length; y++){
-					if(listOfStrings[x].charAt(y) == '/'){
-						counter++;
-					}
-				}
-				if(counter == i){ // if it is on the same layer
-					//console.log(listOfStrings[x] + " same layer " + i);
-					if(counter == 0){
-						html.push("<li>" + listOfStrings[x], "</li>");
-					}
-					else{
-						for(let z = 0; z < counter; z++){
-							var newHtml = [];
-							for(let c = 0; c < html.length; c++){
-								var newCounter = 0;
-								for(let y = 0; y < html[c].length; y++){
-									if(html[c].charAt(y) == '/'){
-										counter++;
-									}
-								}
-								if(listOfStrings[x].indexOf(html[c]) != 0 && counter - 1 == newCounter){
-									newHtml.push("<ul>", "<li>" + listOfStrings[x], "</li>", "</ul>");
-								}
-								else{
-									newHtml.push(html[c]);
-								}
-							}
-						}
-					}
-				}
-			}
-		}*/
+		$("ul ul").hide();
 	}
 	
 	

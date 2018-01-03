@@ -34,11 +34,12 @@ $(document).ready(function() {
     console.log("Ready");
     console.log(generateAccordion(objects, "accordion"));
     generateAccordion(objects, "accordion");
-    //$("#content").append(generateAccordion(objects, "accordion"));
-    //$('ul').hide();
-    $('li').click(function(e) {  // inserted callback param "e" meaning "event"
-        //e.stopPropagation(); // stop click from bubbling up
-        $(this).next("ul").hide();
-    });
-    
+    runAccordion();
 });
+
+
+function runAccordion(){
+	$('li').click(function(e) { 
+		$(this).next("ul").slideToggle();
+    });	
+}
