@@ -24,7 +24,18 @@ function generateAccordion(listP, type){
 	if(type == "accordion"){
 		console.log("Starting Accordion");
 		for(let i = 0; i < maximumDepth; i++){
-			console.log("Max " + maximumDepth + "  " + i);
+			console.log("Depth: " + i);
+			for(let x = 0; x < listOfStrings.length; x++){
+				var counter = -1;
+				for(let y = 0; y < listOfStrings[x].length; y++){
+					if(listOfStrings[x].charAt(y) == '/'){
+						counter++;
+					}
+				}
+				if(counter == i){ // if it is on the same layer
+					console.log(listOfStrings[x] + " same layer " + i);
+				}
+			}
 		}
 	}
 	

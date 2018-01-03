@@ -12,21 +12,18 @@ var three = {
 }
 var oneOne = {
 	name : "oneOne",
-	path : "one/oneOne"
+	path : "one/oneOne/"
 }
 var twoOne = {
 	name : "twoOne",
-	path : "two/twoOne"
+	path : "two/twoOne/"
 }
 var twoOneOne = {
 	name : "twoOneOne",
-	path : "two/twoOne/twoOneOne"
+	path : "two/twoOne/twoOneOne/"
 }
 
-
-var objects = [
-	one, two, three, oneOne, twoOne, twoOneOne];
-	
+var objects = [one, two, three, oneOne, twoOne, twoOneOne];
 	
 	
 $( document ).ready(function() {
