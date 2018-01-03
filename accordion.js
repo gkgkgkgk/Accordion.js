@@ -23,7 +23,21 @@ function generateAccordion(listP, type){
 		}
 	}
 	
+
 	if(type == "accordion"){
+		var rootList = $("<ul id = 'tree'>").appendTo("#content");
+		var elements = {};
+    $.each(list, function() {
+        var parent = elements[this.path.substr(0, this.path.lastIndexOf("/"))];
+        var list = parent ? parent.next("ul") : rootList;
+        if (!list.length) {
+            list = $("<ul>").insertAfter(parent);
+        }
+        var item = $("<li>").appendTo(list);
+        $("<a>").attr("href", this.path).text(this.name).appendTo(item);
+        elements[this.path] = item;
+    });
+		/*
 		console.log("Starting Accordion");
 		for(let i = 0; i < maximumDepth; i++){
 			//console.log("Depth: " + i);
@@ -44,12 +58,12 @@ function generateAccordion(listP, type){
 							var newHtml = [];
 							for(let c = 0; c < html.length; c++){
 								var newCounter = 0;
-								/*for(let y = 0; y < html[c].length; y++){
+								for(let y = 0; y < html[c].length; y++){
 									if(html[c].charAt(y) == '/'){
 										counter++;
 									}
-								}*/
-								if(listOfStrings[x].indexOf(html[c]) != 0/* && counter - 1 == newCounter*/){
+								}
+								if(listOfStrings[x].indexOf(html[c]) != 0 && counter - 1 == newCounter){
 									newHtml.push("<ul>", "<li>" + listOfStrings[x], "</li>", "</ul>");
 								}
 								else{
@@ -60,7 +74,7 @@ function generateAccordion(listP, type){
 					}
 				}
 			}
-		}
+		}*/
 	}
 	
 	
