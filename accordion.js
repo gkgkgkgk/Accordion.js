@@ -34,9 +34,9 @@ function generateAccordion(listP, type){
             list = $("<ul>").insertAfter(parent);
         }
         var item = $("<li>").appendTo(list);
-        $("<a>").attr("href", this.path).text(this.name).appendTo(item);
+        $("<span>").text(this.name).appendTo(item);
         elements[this.path] = item;
-    });
+    });	
 		$("ul ul").hide();
 	}
 	

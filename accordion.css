@@ -1,3 +1,33 @@
 .hidden{
-	display:none;
+	display : none;
+}
+
+ul {
+	list-style-type : none;
+}
+
+span {
+	color: white;
+	display: block;
+	width:100%;
+	transition: 0.2s;
+}
+
+
+li{
+	list-style-position:inside;
+    background-color: black;
+	border-radius: 5px;
+	transition: 0.2s;
+	font-size: 32px;
+	border-style: solid;
+    border-width: 5px;
+}
+
+li:hover {
+	background-color: white;
+}
+
+li span:hover {
+	color: black;
 }
