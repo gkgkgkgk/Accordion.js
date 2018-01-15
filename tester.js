@@ -1,7 +1,8 @@
 var one = {
     name: "one",
     path: "/one",
-	color: "f4dc41"
+	color: "f4dc41",
+	type: "folder"
 }
 var two = {
     name: "two",

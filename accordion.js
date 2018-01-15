@@ -37,15 +37,13 @@ function generateAccordion(listP, type) {
                 blackText = false;
             }
 			
-			//console.log(((hex2rgb(this.color, 1.0).r + hex2rgb(this.color, 1.0).g + hex2rgb(this.color, 1.0).b) / 3.0));
-
             var item = $("<li>").hover(function() {
                     $(this).css("background-color", ('#' + color));
                 },
                 function() {
                     $(this).css("background-color", "black");
                 }).css("border-color", ("#" + color)).appendTo(list);
-            $("<span>").text(this.name).hover(function() {
+            var mySpan = $("<span>").text(this.name).attr("id", this.path).hover(function() {
                     if (blackText) {
                         $(this).css("color", "black");
                     } else {
@@ -55,6 +53,7 @@ function generateAccordion(listP, type) {
                 function() {
                     $(this).css("color", "white");
                 }).appendTo(item);
+			$("<i class='icon-arrow-right'></i>").appendTo(mySpan);
             elements[this.path] = item;
         });
         $("ul ul").hide();
