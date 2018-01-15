@@ -38,8 +38,6 @@ var objects = [one, two, three, oneOne, oneTwo, twoOne, twoOneOne];
 
 
 $(document).ready(function() {
-    console.log("Ready");
-    console.log(generateAccordion(objects, "accordion"));
     generateAccordion(objects, "accordion");
     runAccordion();
 });
