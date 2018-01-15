@@ -6,7 +6,7 @@ var one = {
 var two = {
     name: "two",
     path: "/two",
-	color: "f44242"
+	color: "d3d3d3"
 }
 var three = {
     name: "three",

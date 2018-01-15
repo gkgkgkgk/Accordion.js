@@ -29,22 +29,33 @@ function generateAccordion(listP, type) {
             if (!list.length) {
                 list = $("<ul>").insertAfter(parent);
             }
-			var color = this.color;
+
+            var color = this.color;
+
+            var blackText = true;
+            if (((hex2rgb(this.color, 1.0).r + hex2rgb(this.color, 1.0).g + hex2rgb(this.color, 1.0).b) / 3.0) < 186) {
+                blackText = false;
+            }
+			
+			//console.log(((hex2rgb(this.color, 1.0).r + hex2rgb(this.color, 1.0).g + hex2rgb(this.color, 1.0).b) / 3.0));
+
             var item = $("<li>").hover(function() {
-                    $(this).css("background-color", ('#' + color))
+                    $(this).css("background-color", ('#' + color));
                 },
                 function() {
-                    $(this).css("background-color", "black")
-                }).appendTo(list);
-            $("<span>").text(this.name).appendTo(item);
+                    $(this).css("background-color", "black");
+                }).css("border-color", ("#" + color)).appendTo(list);
+            $("<span>").text(this.name).hover(function() {
+                    if (blackText) {
+                        $(this).css("color", "black");
+                    } else {
+                        $(this).css("color", "white");
+                    }
+                },
+                function() {
+                    $(this).css("color", "white");
+                }).appendTo(item);
             elements[this.path] = item;
-
-            if (((hex2rgb(this.color, 1.0).r + hex2rgb(this.color, 1.0).g + hex2rgb(this.color, 1.0).b) / 3.0) > 186) {
-
-            } else {
-
-            }
-
         });
         $("ul ul").hide();
     }
@@ -56,10 +67,9 @@ function hex2rgb(hex, opacity) {
     var h = hex.replace('#', '');
     h = h.match(new RegExp('(.{' + h.length / 3 + '})', 'g'));
 
-    for (var i = 0; i < h.length; i++)
+    for (var i = 0; i < h.length; i++) {
         h[i] = parseInt(h[i].length == 1 ? h[i] + h[i] : h[i], 16);
-
-    if (typeof opacity != 'undefined') h.push(opacity);
+    }
 
     return {
         r: h[0],
