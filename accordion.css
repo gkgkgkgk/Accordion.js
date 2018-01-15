@@ -30,10 +30,10 @@ li{
 
 }
 
-li:hover {
+/*li:hover {
 	background-color: white;
-}
-/*
+}*/
+
 li span:hover {
 	color: black;
-}*/
+}

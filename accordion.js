@@ -29,15 +29,18 @@ function generateAccordion(listP, type) {
             if (!list.length) {
                 list = $("<ul>").insertAfter(parent);
             }
-            var item = $("<li>").appendTo(list);
-            $("<span>").text(this.name).hover(function() {
-				$(this).css("background-color","red")
-			}).appendTo(item);
+			var color = this.color;
+            var item = $("<li>").hover(function() {
+                    $(this).css("background-color", ('#' + color))
+                },
+                function() {
+                    $(this).css("background-color", "black")
+                }).appendTo(list);
+            $("<span>").text(this.name).appendTo(item);
             elements[this.path] = item;
-            			
-			
-			if (((hexToRgb().r + hexToRgb().g + hexToRgb().b) / 3.0) > 186) {
-				
+
+            if (((hex2rgb(this.color, 1.0).r + hex2rgb(this.color, 1.0).g + hex2rgb(this.color, 1.0).b) / 3.0) > 186) {
+
             } else {
 
             }
@@ -49,17 +52,18 @@ function generateAccordion(listP, type) {
     return "<ul>" + html.join("") + "</ul>";
 }
 
-function hexToRgb(hex) {
-    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    var myhex = hex.replace(shorthandRegex, function(m, r, g, b) {
-        return r + r + g + g + b + b;
-    });
+function hex2rgb(hex, opacity) {
+    var h = hex.replace('#', '');
+    h = h.match(new RegExp('(.{' + h.length / 3 + '})', 'g'));
 
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(myhex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-}
+    for (var i = 0; i < h.length; i++)
+        h[i] = parseInt(h[i].length == 1 ? h[i] + h[i] : h[i], 16);
+
+    if (typeof opacity != 'undefined') h.push(opacity);
+
+    return {
+        r: h[0],
+        g: h[1],
+        b: h[2]
+    };
+};
