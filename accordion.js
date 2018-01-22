@@ -57,10 +57,10 @@ function generateAccordion(listP, type) {
 			
 			var icon;
 			if(this.type == "folder"){
-				icon = $("<i class='icon-arrow-right'></i>").appendTo(mySpan);
+				icon = $("<i class='fa fa-folder'></i>").appendTo(mySpan);
 			}
 			else if(this.type == "file"){
-				icon = $("<i class='icon-arrow-right'></i>").appendTo(mySpan);
+				icon = $("<i class='fa fa-file'></i>").appendTo(mySpan);
 			}
             elements[this.path] = item;
         });
