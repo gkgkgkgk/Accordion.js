@@ -21,11 +21,12 @@ function generateAccordion(listP, type) {
     }
 
     if (type == "accordion") {
-        var rootList = $("<ul id = 'tree'>").appendTo("#content");
+        var root = $("<ul id = 'tree'>").appendTo("#content");
         var elements = {};
         $.each(list, function() {
             var parent = elements[this.path.substr(0, this.path.lastIndexOf("/"))];
-            var list = parent ? parent.next("ul") : rootList;
+            var list = parent ? parent.next("ul") : root;
+			
             if (!list.length) {
                 list = $("<ul>").insertAfter(parent);
             }
@@ -72,12 +73,10 @@ function generateAccordion(listP, type) {
 function hex2rgb(hex, opacity) {
     var h = hex.replace('#', '');
     h = h.match(new RegExp('(.{' + h.length / 3 + '})', 'g'));
-
     for (var i = 0; i < h.length; i++) {
         h[i] = parseInt(h[i].length == 1 ? h[i] + h[i] : h[i], 16);
     }
-
-    return {
+    return { // return as json for seperate vals
         r: h[0],
         g: h[1],
         b: h[2]
