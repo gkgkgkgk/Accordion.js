@@ -53,7 +53,14 @@ function generateAccordion(listP, type) {
                 function() {
                     $(this).css("color", "white");
                 }).appendTo(item);
-			$("<i class='icon-arrow-right'></i>").appendTo(mySpan);
+			
+			var icon;
+			if(this.type == "folder"){
+				icon = $("<i class='icon-arrow-right'></i>").appendTo(mySpan);
+			}
+			else if(this.type == "file"){
+				icon = $("<i class='icon-arrow-right'></i>").appendTo(mySpan);
+			}
             elements[this.path] = item;
         });
         $("ul ul").hide();
