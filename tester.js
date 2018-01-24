@@ -45,7 +45,7 @@ var objects = [one, two, three, oneOne, oneTwo, twoOne, twoOneOne];
 
 
 $(document).ready(function() {
-    generateAccordion(objects, "accordion");
+    generateAccordion("#content", objects, "accordion", "light");
     runAccordion();
 });
 

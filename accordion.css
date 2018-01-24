@@ -19,7 +19,6 @@ span {
 
 li{
 	list-style-position:inside;
-    background-color: black;
 	border-radius: 3px;
 	transition: 0.2s;
 	font-size: 32px;
