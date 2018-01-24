@@ -46,12 +46,4 @@ var objects = [one, two, three, oneOne, oneTwo, twoOne, twoOneOne];
 
 $(document).ready(function() {
     generateAccordion("#content", objects, "accordion", "light");
-    runAccordion();
 });
-
-
-function runAccordion(){
-	$('li').click(function(e) { 
-		$(this).next("ul").slideToggle();
-    });	
-}

@@ -102,7 +102,8 @@ function generateAccordion(parentDiv, listP, type, theme) {
         });
         $("ul ul").hide();
     }
-
+    runAccordion();
+	
     return "<ul>" + html.join("") + "</ul>";
 }
 
@@ -134,3 +135,9 @@ function hex2rgb(hex, opacity) {
         b: h[2]
     };
 };
+
+function runAccordion(){
+	$('li').click(function(e) { 
+		$(this).next("ul").slideToggle();
+    });	
+}
