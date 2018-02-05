@@ -1,15 +1,19 @@
-function generateAccordion(properties) {
-	
-	var prop = properties;
-	var defaults = {
-		type : "accordion"
+var prop = {type : "", parentDiv : "", listP : "", theme : ""};
+var defaults = {
+		type : "accordion",
+		theme: "dark",
+		parentDiv : "#accordion",
+		listP : ""
 	};
-    var list = prop.listP;
+
+function generateAccordion(properties) {
+		
+    var list = properties.listP;
     var listOfStrings = [];
     var maximumDepth = 0;
     var html = [];
 
-    checkParams(prop.parentDiv, prop.listP, prop.type, prop.theme);
+    checkParams(properties.parentDiv, properties.listP, properties.type, properties.theme);
 
     for (let i = 0, len = list.length; i < len; i++) {
         console.log(list[i].path);
@@ -110,27 +114,36 @@ function generateAccordion(properties) {
 }
 
 function checkParams(parentDiv, listP, type, theme) {
-    if (listP.length <= 0) {
-        $("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center'>Message: Object list is empty.</p>").appendTo(parentDiv);
-        return true;
-    }
     if (type != "accordion") {
 		if(type == null){
 			prop.type = defaults.type;
 		}
 		else{
 			$("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center'>Message: Type " + type + " is invalid.</p>").appendTo(parentDiv);
-			return true;
 		}
     }
-    if (theme != "dark" && theme != "light") {
+	else {
+		prop.type = type;
+	}
+    if (theme != "dark" && theme != "light") {		
 		if(theme == null){
 			prop.theme = defaults.theme;
 		}
 		else{
 			$("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center; color : red;'>Message: Theme '" + theme + "' is invalid.</p>").appendTo(parentDiv);
-			return true;
 		}
+    }
+	else{
+		prop.theme = theme;
+	}
+	if(parentDiv == null || parentDiv == "undefined"){
+		prop.parentDiv = defaults.parentDiv;
+	}
+	else{
+		prop.parentDiv = parentDiv;
+	}
+	if (listP == null || listP.length <= 0) {
+        $("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center'>Message: Object list is empty.</p>").appendTo(prop.parentDiv);
     }
 }
 
