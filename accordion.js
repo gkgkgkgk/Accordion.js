@@ -1,13 +1,15 @@
-function generateAccordion(parentDiv, listP, type, theme) {
-
-    var list = listP;
+function generateAccordion(properties) {
+	
+	var prop = properties;
+	var defaults = {
+		type : "accordion"
+	};
+    var list = prop.listP;
     var listOfStrings = [];
     var maximumDepth = 0;
     var html = [];
 
-    if (checkParams(parentDiv, listP, type, theme)) {
-        return null;
-    }
+    checkParams(prop.parentDiv, prop.listP, prop.type, prop.theme);
 
     for (let i = 0, len = list.length; i < len; i++) {
         console.log(list[i].path);
@@ -24,8 +26,8 @@ function generateAccordion(parentDiv, listP, type, theme) {
         }
     }
 
-    if (type == "accordion") {
-        var root = $("<ul id = 'tree'>").appendTo(parentDiv);
+    if (prop.type == "accordion") {
+        var root = $("<ul id = 'tree'>").appendTo(prop.parentDiv);
         var elements = {};
         $.each(list, function() {
             var parent = elements[this.path.substr(0, this.path.lastIndexOf("/"))];
@@ -48,28 +50,28 @@ function generateAccordion(parentDiv, listP, type, theme) {
                     $(this).css("background-color", ('#' + color));
                 },
                 function() {
-                    if (theme == "dark") {
+                    if (prop.theme == "dark") {
                         $(this).css("background-color", "black");
                     }
-                    if (theme == "light") {
+                    if (prop.theme == "light") {
                         $(this).css("background-color", "white");
                     }
                 }).css("border-color", ("#" + color)).css("background-color", function() {
-				if (theme == "dark") {
+				if (prop.theme == "dark") {
                     return "black";
-                } else if (theme == "light") {
+                } else if (prop.theme == "light") {
                     return "white";
                 }
             }).appendTo(list);
             var mySpan = $("<span>").text(this.name).attr("id", this.path).hover(function() {
-                    if (theme == "dark") {
+                    if (prop.theme == "dark") {
                         if (blackText) {
                             $(this).css("color", "black");
                         } else {
                             $(this).css("color", "white");
                         }
                     }
-                    if (theme == "light") {
+                    if (prop.theme == "light") {
                         if (blackText) {
                             $(this).css("color", "white");
                         } else {
@@ -78,16 +80,16 @@ function generateAccordion(parentDiv, listP, type, theme) {
                     }
                 },
                 function() {
-                    if (theme == "dark") {
+                    if (prop.theme == "dark") {
                         $(this).css("color", "white");
                     }
-                    if (theme == "light") {
+                    if (prop.theme == "light") {
                         $(this).css("color", "black");
                     }
                 }).css("color", function() {
-                if (theme == "dark") {
+                if (prop.theme == "dark") {
                     return "white";
-                } else if (theme == "light") {
+                } else if (prop.theme == "light") {
                     return "black";
                 }
             }).appendTo(item);
@@ -113,12 +115,22 @@ function checkParams(parentDiv, listP, type, theme) {
         return true;
     }
     if (type != "accordion") {
-        $("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center'>Message: Type " + type + " is invalid.</p>").appendTo(parentDiv);
-        return true;
+		if(type == null){
+			prop.type = defaults.type;
+		}
+		else{
+			$("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center'>Message: Type " + type + " is invalid.</p>").appendTo(parentDiv);
+			return true;
+		}
     }
     if (theme != "dark" && theme != "light") {
-        $("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center; color : red;'>Message: Theme '" + theme + "' is invalid.</p>").appendTo(parentDiv);
-        return true;
+		if(theme == null){
+			prop.theme = defaults.theme;
+		}
+		else{
+			$("<h3 style = 'text-align:center; color : red;'>Error in Accordion.js init</h3><p style = 'text-align:center; color : red;'>Message: Theme '" + theme + "' is invalid.</p>").appendTo(parentDiv);
+			return true;
+		}
     }
 }
 

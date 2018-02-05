@@ -44,6 +44,6 @@ var twoOneOne = {
 var objects = [one, two, three, oneOne, oneTwo, twoOne, twoOneOne];
 
 
-$(document).ready(function() {
-    generateAccordion("#content", objects, "accordion", "light");
+$(document).ready(function() {	
+    generateAccordion({parentDiv : "#content", listP : objects, type : "accordion"});
 });
